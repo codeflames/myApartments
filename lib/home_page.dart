@@ -12,6 +12,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        selectedItemColor: Colors.blue[800],
+        currentIndex: 0,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.chat_bubble), title: Text('')),
+          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('')),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -118,9 +129,40 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    'assets/images/apartment_two.jpg',
-                    fit: BoxFit.cover,
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: double.infinity,
+//                        width: double.infinity,
+                        child: Image.asset(
+                          'assets/images/apartment_two.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          width: 100,
+                          child: Text('Lovren House',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                            padding: EdgeInsets.only(bottom: 15, left: 15),
+                            width: 100,
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                              size: 40,
+                            )),
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -206,11 +248,12 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.blue[800]),
                           child: Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5.0, horizontal: 8),
                             child: Text(
                               'Air conditioning',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 10),
+                                  TextStyle(color: Colors.white, fontSize: 8),
                             ),
                           ),
                         ),
@@ -220,11 +263,12 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.blue[800]),
                           child: Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5.0, horizontal: 8),
                             child: Text(
                               'Wi-Fi',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 10),
+                                  TextStyle(color: Colors.white, fontSize: 8),
                             ),
                           ),
                         ),
@@ -234,11 +278,12 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.blue[800]),
                           child: Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5.0, horizontal: 8),
                             child: Text(
                               'TV-LED',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 10),
+                                  TextStyle(color: Colors.white, fontSize: 8),
                             ),
                           ),
                         ),
