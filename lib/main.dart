@@ -1,3 +1,4 @@
+import 'package:city_apartments/apartment_details.dart';
 import 'package:city_apartments/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: ApartmentDetails(),
     );
   }
 }
