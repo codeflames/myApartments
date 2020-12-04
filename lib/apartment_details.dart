@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 
 class ApartmentDetails extends StatelessWidget {
   @override
@@ -70,9 +72,34 @@ class ApartmentDetails extends StatelessWidget {
                             ],
                           )
                         ],
+                      ),
+                      ReadMoreText(
+                        'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+                        trimLines: 2,
+                        colorClickableText: Colors.blue[700],
+                        trimMode: TrimMode.Line,
+                        trimCollapsedText: '\nRead more',
+                        trimExpandedText: 'Show less',
+                        moreStyle: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      SlideAction(
+                        child: Text('slide to book'),
+                        onSubmit: () {},
+                        sliderButtonIcon: Icon(Icons.navigate_next),
                       )
                     ],
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.amber,
                 ),
               ),
             )
