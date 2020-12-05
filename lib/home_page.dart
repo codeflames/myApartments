@@ -1,3 +1,4 @@
+import 'package:city_apartments/apartment_details.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,6 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String apartmentImage = 'assets/images/apartment_two.jpg';
+  String apartmentName = 'Lovren House';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,9 +137,12 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         height: double.infinity,
 //                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/images/apartment_two.jpg',
-                          fit: BoxFit.cover,
+                        child: Hero(
+                          tag: Text('first'),
+                          child: Image.asset(
+                            apartmentImage,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Align(
@@ -144,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           padding: EdgeInsets.all(15),
                           width: 100,
-                          child: Text('Lovren House',
+                          child: Text(apartmentName,
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,
@@ -156,10 +162,21 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                             padding: EdgeInsets.only(bottom: 15, left: 15),
                             width: 100,
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.white,
-                              size: 40,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.navigate_next,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => ApartmentDetails(
+                                            image: apartmentImage,
+                                            name: apartmentName,
+                                          )));
+                                },
+                              ),
                             )),
                       )
                     ],

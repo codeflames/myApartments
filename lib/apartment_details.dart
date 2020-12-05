@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import 'package:slide_to_act/slide_to_act.dart';
+import 'package:slider_button/slider_button.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class ApartmentDetails extends StatelessWidget {
+  final String image;
+  final String name;
+
+  const ApartmentDetails({Key key, this.image, this.name}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,10 +19,23 @@ class ApartmentDetails extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                  height: MediaQuery.of(context).size.height * .55,
-                  child: Image.network(
-                      'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?cs=srgb&dl=pexels-vecislavas-popa-1643383.jpg&fm=jpg',
-                      fit: BoxFit.cover)),
+                height: MediaQuery.of(context).size.height * .55,
+                child: ImageSlideshow(
+                  initialPage: 0,
+                  onPageChanged: (value) {},
+                  indicatorColor: Colors.grey,
+                  children: [
+                    Hero(
+                      tag: Text('first'),
+                      child: Image.asset(image, fit: BoxFit.cover),
+                    ),
+                    Image.asset('assets/images/apartment_three.jpg',
+                        fit: BoxFit.cover),
+                    Image.asset('assets/images/apartment_one.jpg',
+                        fit: BoxFit.cover),
+                  ],
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -36,7 +55,11 @@ class ApartmentDetails extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('name'),
+                      Text(
+                        name,
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -83,10 +106,14 @@ class ApartmentDetails extends StatelessWidget {
                         moreStyle: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-                      SlideAction(
-                        child: Text('slide to book'),
-                        onSubmit: () {},
-                        sliderButtonIcon: Icon(Icons.navigate_next),
+                      SliderButton(
+                        action: () {},
+                        label: Text(
+                          'Slide to Book',
+                        ),
+                        dismissible: false,
+                        backgroundColor: Colors.blue[700],
+                        icon: Icon(Icons.navigate_next),
                       )
                     ],
                   ),
@@ -99,7 +126,11 @@ class ApartmentDetails extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: CircleAvatar(
                   radius: 25,
-                  backgroundColor: Colors.amber,
+                  backgroundColor: Colors.grey[100],
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             )
