@@ -53,6 +53,7 @@ class ApartmentDetails extends StatelessWidget {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * .5,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
@@ -66,7 +67,12 @@ class ApartmentDetails extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text('Living room'),
+                              Text(
+                                'Living room',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               Text('80 sqft')
                             ],
                           ),
@@ -78,8 +84,13 @@ class ApartmentDetails extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text('Living room'),
-                              Text('80 sqft')
+                              Text(
+                                'Bedroom',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text('20 sqft')
                             ],
                           ),
                           Text(
@@ -90,30 +101,43 @@ class ApartmentDetails extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text('Living room'),
-                              Text('80 sqft')
+                              Text(
+                                'Bathroom',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text('12 sqft')
                             ],
                           )
                         ],
                       ),
                       ReadMoreText(
-                        'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+                        'All rooms are single-occupancy rooms, while size varies considerably. Apartments have facilities which include some comfortable seating in the living room, a dining table and chairs in the kitchen or dining room; a stove, a microwave oven, two refridgerators and a freezer in the kitchen and a drying cupboard.',
                         trimLines: 2,
                         colorClickableText: Colors.blue[700],
                         trimMode: TrimMode.Line,
                         trimCollapsedText: '\nRead more',
                         trimExpandedText: 'Show less',
                         moreStyle: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
                       ),
-                      SliderButton(
-                        action: () {},
-                        label: Text(
-                          'Slide to Book',
+                      Align(
+                        alignment: Alignment.center,
+                        child: SliderButton(
+                          action: () {},
+                          label: Text(
+                            'Slide to Book',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          dismissible: false,
+                          alignLabel: Alignment.center,
+                          backgroundColor: Colors.blue[500],
+                          icon: Icon(Icons.navigate_next),
                         ),
-                        dismissible: false,
-                        backgroundColor: Colors.blue[700],
-                        icon: Icon(Icons.navigate_next),
                       )
                     ],
                   ),
