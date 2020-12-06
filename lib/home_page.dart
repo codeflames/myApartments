@@ -1,5 +1,6 @@
 import 'package:city_apartments/apartment_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -213,8 +214,24 @@ class _HomePageState extends State<HomePage> {
                     Text('Double family house',
                         style: TextStyle(fontSize: 12, color: Colors.grey)),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        //TODO add a read only rating box as the first child,
+                        RatingBar.builder(
+                          initialRating: 4,
+                          itemSize: 10,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          //itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
                         Text(
                           '147 reviews',
                           style: TextStyle(
