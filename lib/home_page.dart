@@ -1,4 +1,6 @@
 import 'package:city_apartments/apartment_details.dart';
+import 'package:city_apartments/models/apartment_model.dart';
+import 'package:city_apartments/widgets/facility_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -10,8 +12,51 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String apartmentImage = 'assets/images/apartment_two.jpg';
-  String apartmentName = 'Lovren House';
+  List<Apartment> apartments = [
+    Apartment(
+      id: 0,
+      name: 'Loveren Apartment',
+      apartmentType: 'Self Contain',
+      image: 'assets/images/apartment_one.jpg',
+      description:
+          'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
+      facilities: ['Tv', 'Hot tub', 'solar'],
+      price: 100,
+    ),
+    Apartment(
+      id: 1,
+      name: 'Statham Apartment',
+      apartmentType: 'One Bedroom',
+      image: 'assets/images/apartment_two.jpg',
+      description:
+          'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
+      facilities: ['Tv', 'Hot tub', 'solar', 'air conditioning'],
+      price: 100,
+    ),
+    Apartment(
+      id: 2,
+      name: 'Jason Arena',
+      apartmentType: 'Two bedroom',
+      image: 'assets/images/apartment_three.jpg',
+      description:
+          'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
+      facilities: ['Tv', 'Movie-house', 'solar'],
+      price: 100,
+    ),
+    Apartment(
+      id: 3,
+      name: 'Loveren Apartment',
+      apartmentType: 'Self Contain',
+      image: 'assets/images/apartment_one.jpg',
+      description:
+          'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
+      facilities: ['Wi-Fi', 'Hot tub', 'solar'],
+      price: 100,
+    ),
+  ];
+
+  // String apartmentImage = 'assets/images/apartment_two.jpg';
+  // String apartmentName = 'Lovren House';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +117,26 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              apartmentCard(context),
-              apartmentCard(context),
+              Container(
+                height: MediaQuery.of(context).size.height * .75,
+                child: ListView.builder(
+                  itemCount: apartments.length,
+                  itemBuilder: (context, index) => apartmentCard(
+                      context: context,
+                      apartmentName: apartments[index].name,
+                      apartmentImage: apartments[index].image,
+                      apartmentPrice: apartments[index].price,
+                      apartmentType: apartments[index].apartmentType,
+                      apartmentFacilities: [
+                        FacilitiesTag(
+                          facility: apartments[index].facilities,
+                        )
+                      ]),
+                ),
+              ),
+
+              // apartmentCard(context),
+              // apartmentCard(context),
             ],
           ),
         ),
@@ -81,7 +144,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget apartmentCard(BuildContext context) => Container(
+  Widget apartmentCard(
+          {BuildContext context,
+          double apartmentPrice,
+          String apartmentType,
+          String apartmentImage,
+          String apartmentName,
+          String apartmentDescription,
+          List<Widget> apartmentFacilities}) =>
+      Container(
+        //height: 300,
         height: MediaQuery.of(context).size.height * .40,
         child: Stack(
           children: <Widget>[
@@ -206,12 +278,13 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.bold, color: Colors.black),
                           children: <TextSpan>[
                             TextSpan(
-                                text: '\$900/', style: TextStyle(fontSize: 16)),
+                                text: '\$$apartmentPrice/'.toString(),
+                                style: TextStyle(fontSize: 16)),
                             TextSpan(
                                 text: 'month', style: TextStyle(fontSize: 14))
                           ]),
                     ),
-                    Text('Double family house',
+                    Text(apartmentType,
                         style: TextStyle(fontSize: 12, color: Colors.grey)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -274,19 +347,7 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                    Wrap(
-                      children: <Widget>[
-                        FacilitiesTag(
-                          facility: 'Air conditioning',
-                        ),
-                        FacilitiesTag(
-                          facility: 'Wi-Fi',
-                        ),
-                        FacilitiesTag(
-                          facility: 'TV-LED',
-                        )
-                      ],
-                    )
+                    ...apartmentFacilities
                   ],
                 ),
               ),
@@ -294,28 +355,4 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
-}
-
-class FacilitiesTag extends StatelessWidget {
-  final String facility;
-  const FacilitiesTag({
-    Key key,
-    this.facility,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 5, right: 5),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15), color: Colors.blue[800]),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8),
-        child: Text(
-          facility,
-          style: TextStyle(color: Colors.white, fontSize: 8),
-        ),
-      ),
-    );
-  }
 }
