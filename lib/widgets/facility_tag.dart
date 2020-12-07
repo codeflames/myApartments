@@ -9,14 +9,13 @@ class FacilitiesTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      height: 25,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: facility.length,
-          itemBuilder: (context, index) => Container(
+    return Expanded(
+        child: ListView(
+      children: <Widget>[
+        Wrap(
+          children: <Widget>[
+            for (var i = 0; i < facility.length; i++)
+              Container(
                 margin: EdgeInsets.only(top: 5, right: 5),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -25,11 +24,34 @@ class FacilitiesTag extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8),
                   child: Text(
-                    facility[index],
+                    facility[i],
                     style: TextStyle(color: Colors.white, fontSize: 8),
                   ),
                 ),
-              )),
-    );
+              )
+          ],
+        )
+      ],
+    )
+        // ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     shrinkWrap: true,
+        //     physics: NeverScrollableScrollPhysics(),
+        //     itemCount: facility.length,
+        //     itemBuilder: (context, index) => Container(
+        //           margin: EdgeInsets.only(top: 5, right: 5),
+        //           decoration: BoxDecoration(
+        //               borderRadius: BorderRadius.circular(15),
+        //               color: Colors.blue[800]),
+        //           child: Padding(
+        //             padding:
+        //                 const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8),
+        //             child: Text(
+        //               facility[index],
+        //               style: TextStyle(color: Colors.white, fontSize: 8),
+        //             ),
+        //           ),
+        //         )),
+        );
   }
 }

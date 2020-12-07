@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       description:
           'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
       facilities: ['Tv', 'Hot tub', 'solar'],
-      price: 100,
+      price: 105,
     ),
     Apartment(
       id: 1,
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       description:
           'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
       facilities: ['Tv', 'Hot tub', 'solar', 'air conditioning'],
-      price: 100,
+      price: 106,
     ),
     Apartment(
       id: 2,
@@ -41,17 +41,17 @@ class _HomePageState extends State<HomePage> {
       description:
           'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
       facilities: ['Tv', 'Movie-house', 'solar'],
-      price: 100,
+      price: 610,
     ),
     Apartment(
       id: 3,
-      name: 'Loveren Apartment',
-      apartmentType: 'Self Contain',
+      name: "verena's cubicle",
+      apartmentType: 'Cubicle',
       image: 'assets/images/apartment_one.jpg',
       description:
-          'This is a selfContained house having a bathroom, kitchen and a spacious room for both TVs, cushions and a bed',
+          'All rooms are single-occupancy rooms, while size varies considerably. Apartments have facilities which include some comfortable seating in the living room, a dining table and chairs in the kitchen or dining room; a stove, a microwave oven, two refridgerators and a freezer in the kitchen and a drying cupboard.',
       facilities: ['Wi-Fi', 'Hot tub', 'solar'],
-      price: 100,
+      price: 150,
     ),
   ];
 
@@ -127,11 +127,10 @@ class _HomePageState extends State<HomePage> {
                       apartmentImage: apartments[index].image,
                       apartmentPrice: apartments[index].price,
                       apartmentType: apartments[index].apartmentType,
-                      apartmentFacilities: [
-                        FacilitiesTag(
-                          facility: apartments[index].facilities,
-                        )
-                      ]),
+                      apartmentDescription: apartments[index].description,
+                      apartmentFacilities: FacilitiesTag(
+                        facility: apartments[index].facilities,
+                      )),
                 ),
               ),
 
@@ -151,7 +150,7 @@ class _HomePageState extends State<HomePage> {
           String apartmentImage,
           String apartmentName,
           String apartmentDescription,
-          List<Widget> apartmentFacilities}) =>
+          Widget apartmentFacilities}) =>
       Container(
         //height: 300,
         height: MediaQuery.of(context).size.height * .40,
@@ -247,6 +246,7 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context) => ApartmentDetails(
                                             image: apartmentImage,
                                             name: apartmentName,
+                                            details: apartmentDescription,
                                           )));
                                 },
                               ),
@@ -286,6 +286,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(apartmentType,
                         style: TextStyle(fontSize: 12, color: Colors.grey)),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .02,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -347,7 +350,10 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                    ...apartmentFacilities
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .02,
+                    ),
+                    apartmentFacilities
                   ],
                 ),
               ),

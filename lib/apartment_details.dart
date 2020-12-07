@@ -6,8 +6,10 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 class ApartmentDetails extends StatelessWidget {
   final String image;
   final String name;
+  final String details;
 
-  const ApartmentDetails({Key key, this.image, this.name}) : super(key: key);
+  const ApartmentDetails({Key key, this.image, this.name, this.details})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +115,7 @@ class ApartmentDetails extends StatelessWidget {
                         ],
                       ),
                       ReadMoreText(
-                        'All rooms are single-occupancy rooms, while size varies considerably. Apartments have facilities which include some comfortable seating in the living room, a dining table and chairs in the kitchen or dining room; a stove, a microwave oven, two refridgerators and a freezer in the kitchen and a drying cupboard.',
+                        details,
                         trimLines: 2,
                         colorClickableText: Colors.blue[700],
                         trimMode: TrimMode.Line,
